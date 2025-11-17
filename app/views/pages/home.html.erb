@@ -1,0 +1,22 @@
+<!-- app/views/pages/home.html.erb -->
+<div class="text-center py-20">
+  <h1 class="text-5xl font-bold text-gray-800 mb-4">
+    Welcome to Chat Rails 💬
+  </h1>
+  
+  <p class="text-xl text-gray-600 mb-8">
+    Real-time chat built with Rails 7.1 + Hotwire
+  </p>
+  
+  <% if logged_in? %>
+    <%= link_to "Go to Chat Rooms →", rooms_path, 
+               class: "bg-blue-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-700" %>
+  <% else %>
+    <div class="space-x-4">
+      <%= link_to "Login", login_path, 
+                 class: "bg-blue-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-700" %>
+      <%= link_to "Sign Up", signup_path, 
+                 class: "bg-green-600 text-white px-8 py-3 rounded-lg text-lg hover:bg-green-700" %>
+    </div>
+  <% end %>
+</div>

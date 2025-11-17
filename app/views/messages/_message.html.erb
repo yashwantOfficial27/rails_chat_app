@@ -1,0 +1,31 @@
+<!-- app/views/messages/_message.html.erb -->
+<%= turbo_frame_tag dom_id(message) do %>
+  <div class="flex items-start space-x-3">
+    <div class="flex-shrink-0">
+      <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
+        <%= message.user.username[0].upcase %>
+      </div>
+    </div>
+    
+    <div class="flex-1">
+      <div class="flex items-center space-x-2 mb-1">
+        <span class="font-bold text-gray-800"><%= message.user.username %></span>
+        <span class="text-xs text-gray-500">
+          <%= time_ago_in_words(message.created_at) %> ago
+        </span>
+        
+        <% if message.user == current_user %>
+          <%= button_to "Delete", room_message_path(message.room, message), 
+                       method: :delete,
+                       data: { turbo_confirm: "Are you sure?" },
+                       class: "text-xs text-red-600 hover:underline" %>
+
+        <% end %>
+      </div>
+      
+      <div class="text-gray-700">
+        <%= simple_format(message.content) %>
+      </div>
+    </div>
+  </div>
+<% end %>

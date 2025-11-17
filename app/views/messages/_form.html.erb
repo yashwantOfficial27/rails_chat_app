@@ -1,0 +1,14 @@
+<!-- In app/views/messages/_form.html.erb -->
+<%= form_with model: [room, message], 
+              id: "message_form",
+              data: { controller: "message-form" },
+              class: "flex space-x-2" do |f| %>
+  <%= f.text_area :content, 
+                  rows: 2,
+                  placeholder: "Type your message... (Enter to send, Shift+Enter for new line)",
+                  class: "flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none",
+                  data: { action: "keydown->message-form#submitOnEnter" } %>
+  
+  <%= f.submit "Send", 
+              class: "bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 cursor-pointer" %>
+<% end %>
